@@ -16,3 +16,4 @@ git re/.web-server-pid
 /vendor/
 /web/bundles/
 *.php~
+.idea
