@@ -15,4 +15,4 @@ git re/.web-server-pid
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/.php~
+*.php~
