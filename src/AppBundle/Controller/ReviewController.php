@@ -21,32 +21,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  */
 class ReviewController extends Controller
 {
+
     /**
-     * List one review with one flight and one user.
-     *
-     * @Route ("/", name="review_index")
-     * @Method("GET")
-     * @return Response A Response instance
+     *  @Route("/", name="review_index")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $reviews = $em->getRepository('AppBundle:Review')->findAll();
-        return $this->render ('review/index.html.twig', array (
-            'reviews' => $reviews,
+        return $this->render('review\index.html.twig', array(
         ));
     }
     /**
-     * Creates a new review entity.
-     *
-     * @param Request $request New posted info
-     *
-     * @Route ("/new", name="review_new")
-     * @Method ({"GET", "POST"})
-     * @return Response A Response instance
+     * @Route("/new", name="review_new")
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
-        return $this->render($request);
+        return $this->render('review\new.html.twig', array(
+        ));
     }
 }
