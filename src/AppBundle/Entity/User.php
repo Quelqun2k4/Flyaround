@@ -95,7 +95,6 @@ class User
      */
     private $isCertifiedPilot;
 
-
     /**
      * Get id
      *
