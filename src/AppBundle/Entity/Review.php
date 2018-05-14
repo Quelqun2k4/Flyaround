@@ -12,6 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Review
 {
+    /*
+     * Adding personel methods / variables
+     */
+
+    public function __toString()
+    {
+        // Return the Site object with "[ID]" format, when __toString is called.
+        return $this->id . " ";
+    }
     /**
     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
     * @ORM\JoinColumn(nullable=false)

@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    /*
+     * Adding personel methods / variables
+     */
     public function __toString()
     {
         // Return the Site object with "[ID]" format, when __toString is called.
