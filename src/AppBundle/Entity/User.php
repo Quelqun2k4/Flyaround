@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-
-
 /**
  * User
  *
@@ -15,30 +13,25 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
     /*
-     * Adding personel methods / variables
-     */
-
+    * Addding personal methods / variables
+    */
     public function __toString()
     {
-        // Return the Site object with "[LASTNAME] [FIRSTNAME]" format, when __toString is called.
-        return $this->lastName . $this->firstName;
+        // Return the User object with "[FIRSTNAME] - [LASTNAME]" format when __toString is called
+        return $this->firstName . " " . $this->lastName;
     }
-
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="passenger")
-     */
-    private $passengers;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="pilot")
-     */
-    private $pilots;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Review", mappedBy="reviewAuthor")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Review", mappedBy="reviewAuthors")
      */
     private $reviewAuthors;
-
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="pilots")
+     */
+    private $pilots;
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="passengers")
+     */
+    private $passengers;
     /**
      * @var int
      *
@@ -47,56 +40,48 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=32)
      */
     private $firstName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=32)
      */
     private $lastName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=32)
      */
     private $phoneNumber;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
-
     /**
      * @var int
      *
      * @ORM\Column(name="note", type="smallint")
      */
     private $note;
-
     /**
      * @var bool
      *
      * @ORM\Column(name="isCertifiedPilot", type="boolean")
      */
     private $isCertifiedPilot;
-
     /**
      * Get id
      *
@@ -106,7 +91,6 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
     /**
      * Set firstName
      *
@@ -117,10 +101,8 @@ class User extends BaseUser
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * Get firstName
      *
@@ -130,7 +112,6 @@ class User extends BaseUser
     {
         return $this->firstName;
     }
-
     /**
      * Set lastName
      *
@@ -141,10 +122,8 @@ class User extends BaseUser
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -154,7 +133,6 @@ class User extends BaseUser
     {
         return $this->lastName;
     }
-
     /**
      * Set phoneNumber
      *
@@ -165,10 +143,8 @@ class User extends BaseUser
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
-
         return $this;
     }
-
     /**
      * Get phoneNumber
      *
@@ -178,7 +154,6 @@ class User extends BaseUser
     {
         return $this->phoneNumber;
     }
-
     /**
      * Set birthDate
      *
@@ -189,10 +164,8 @@ class User extends BaseUser
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
-
         return $this;
     }
-
     /**
      * Get birthDate
      *
@@ -202,7 +175,6 @@ class User extends BaseUser
     {
         return $this->birthDate;
     }
-
     /**
      * Set creationDate
      *
@@ -213,10 +185,8 @@ class User extends BaseUser
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
-
         return $this;
     }
-
     /**
      * Get creationDate
      *
@@ -226,7 +196,6 @@ class User extends BaseUser
     {
         return $this->creationDate;
     }
-
     /**
      * Set note
      *
@@ -237,10 +206,8 @@ class User extends BaseUser
     public function setNote($note)
     {
         $this->note = $note;
-
         return $this;
     }
-
     /**
      * Get note
      *
@@ -250,7 +217,6 @@ class User extends BaseUser
     {
         return $this->note;
     }
-
     /**
      * Set isCertifiedPilot
      *
@@ -261,10 +227,8 @@ class User extends BaseUser
     public function setIsCertifiedPilot($isCertifiedPilot)
     {
         $this->isCertifiedPilot = $isCertifiedPilot;
-
         return $this;
     }
-
     /**
      * Get isCertifiedPilot
      *
@@ -280,34 +244,98 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-
         $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
-     * Add reviewAuthor
+     * Add reviewAuthors
      *
-     * @param \AppBundle\Entity\Review $reviewAuthor
+     * @param \AppBundle\Entity\Review $reviewAuthors
      *
      * @return User
      */
-    public function addReviewAuthor(\AppBundle\Entity\Review $reviewAuthor)
+    public function addReviewAuthor(\AppBundle\Entity\Review $reviewAuthors)
     {
-        $this->reviewAuthors[] = $reviewAuthor;
-
+        $this->reviewAuthors[] = $reviewAuthors;
         return $this;
     }
-
     /**
-     * Remove reviewAuthor
+     * Remove reviewAuthors
      *
-     * @param \AppBundle\Entity\Review $reviewAuthor
+     * @param \AppBundle\Entity\Review $reviewAuthors
      */
-    public function removeReviewAuthor(\AppBundle\Entity\Review $reviewAuthor)
+    public function removeReviewAuthor(\AppBundle\Entity\Review $reviewAuthors)
     {
-        $this->reviewAuthors->removeElement($reviewAuthor);
+        $this->reviewAuthors->removeElement($reviewAuthors);
     }
-
+    /**
+     * Get reviewAuthors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReviewAuthor()
+    {
+        return $this->reviewAuthors;
+    }
+    /**
+     * Add pilots
+     *
+     * @param \AppBundle\Entity\Flight $pilots
+     *
+     * @return User
+     */
+    public function addPilot(\AppBundle\Entity\Flight $pilots)
+    {
+        $this->pilots[] = $pilots;
+        return $this;
+    }
+    /**
+     * Remove pilots
+     *
+     * @param \AppBundle\Entity\Flight $pilots
+     */
+    public function removePilot(\AppBundle\Entity\Flight $pilots)
+    {
+        $this->pilots->removeElement($pilots);
+    }
+    /**
+     * Get pilots
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPilot()
+    {
+        return $this->pilots;
+    }
+    /**
+     * Add passengers
+     *
+     * @param \AppBundle\Entity\Reservation $passengers
+     *
+     * @return User
+     */
+    public function addPassenger(\AppBundle\Entity\Reservation $passengers)
+    {
+        $this->passengers[] = $passengers;
+        return $this;
+    }
+    /**
+     * Remove passengers
+     *
+     * @param \AppBundle\Entity\Reservation $passengers
+     */
+    public function removePassenger(\AppBundle\Entity\Reservation $passengers)
+    {
+        $this->passengers->removeElement($passengers);
+    }
+    /**
+     * Get passengers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPassenger()
+    {
+        return $this->passengers;
+    }
     /**
      * Get reviewAuthors
      *
@@ -317,31 +345,6 @@ class User extends BaseUser
     {
         return $this->reviewAuthors;
     }
-
-    /**
-     * Add pilot
-     *
-     * @param \AppBundle\Entity\Flight $pilot
-     *
-     * @return User
-     */
-    public function addPilot(\AppBundle\Entity\Flight $pilot)
-    {
-        $this->pilots[] = $pilot;
-
-        return $this;
-    }
-
-    /**
-     * Remove pilot
-     *
-     * @param \AppBundle\Entity\Flight $pilot
-     */
-    public function removePilot(\AppBundle\Entity\Flight $pilot)
-    {
-        $this->pilots->removeElement($pilot);
-    }
-
     /**
      * Get pilots
      *
@@ -351,31 +354,6 @@ class User extends BaseUser
     {
         return $this->pilots;
     }
-
-    /**
-     * Add passenger
-     *
-     * @param \AppBundle\Entity\Reservation $passenger
-     *
-     * @return User
-     */
-    public function addPassenger(\AppBundle\Entity\Reservation $passenger)
-    {
-        $this->passengers[] = $passenger;
-
-        return $this;
-    }
-
-    /**
-     * Remove passenger
-     *
-     * @param \AppBundle\Entity\Reservation $passenger
-     */
-    public function removePassenger(\AppBundle\Entity\Reservation $passenger)
-    {
-        $this->passengers->removeElement($passenger);
-    }
-
     /**
      * Get passengers
      *
