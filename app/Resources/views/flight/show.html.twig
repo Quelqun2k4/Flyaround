@@ -18,6 +18,14 @@
                 <td>{{ flight.seatPrice }}</td>
             </tr>
             <tr>
+                <th>Distance</th>
+                <td>{% if distance %}{{ distance|number_format(2, ',', ' ') }}{% endif %} {{ unit }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{% if time %}{{ time }}{% endif %}</td>
+            </tr>
+            <tr>
                 <th>Takeofftime</th>
                 <td>{% if flight.takeOffTime %}{{ flight.takeOffTime|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
