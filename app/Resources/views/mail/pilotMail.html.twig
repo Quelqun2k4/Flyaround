@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+{% block body %}
+    <h2 style="color:#0E7693; font-size:22px; padding-top:12px;">Nouvelle réservation sur votre vol !</h2>
+
+    <div align="left" class="article-content">
+        <p> {{ reservation.passenger }} vient de réserver {{ reservation.nbReservedSeats }} place(s) sur votre vol :</p>
+        <p>{{ reservation.flight }}.</p>
+        <p>Merci de voyager avec Flyaround</p>
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

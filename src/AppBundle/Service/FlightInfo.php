@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: thibault1serre
- * Date: 22/05/18
- * Time: 11:05
- */
 
 namespace AppBundle\Service;
 class FlightInfo
