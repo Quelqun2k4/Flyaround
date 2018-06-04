@@ -17,3 +17,4 @@ git re/.web-server-pid
 /web/bundles/
 *.php~
 .idea
+/node_modules
